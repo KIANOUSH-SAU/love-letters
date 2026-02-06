@@ -1,17 +1,49 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import * as Tone from "tone";
+import { useUser } from "../contexts/auth-context";
 
+const noteMap: Record<string, string> = {
+  "1": "E6", // The iconic high "ding" note (repeated 15x)
+  "2": "E5", // The octave drop
+  "3": "D#6", // The second set of hits
+  "4": "D#5", // Dropping an octave
+  "5": "C#6", // Third set
+  "6": "C#5", // Dropping an octave
+  "7": "B5", // The transition note
+  "8": "A5", // The resolution note
+  "9": "G#5", // The final melancholic note
+  "0": "F#5", // Extra lower note
+  "*": "E4", // Deep bass note
+  "⌫": "C#4", // Alternative bass note
+};
 const KeypadDemo = () => {
+  const navigate = useNavigate();
+  const { users, setActiveUser } = useUser();
   const [input, setInput] = useState<string>("");
   const [keyboardKey, setKeyboardKey] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const synth = new Tone.Synth({
+    oscillator: { type: "sine" }, // Sines are cleaner for high notes
+    envelope: {
+      attack: 0.005,
+      decay: 0.7,
+      sustain: 1,
+      release: 1,
+    },
+  }).toDestination();
 
   const handleKeyPress = (key: string) => {
-    setInput((prevInput) => {
-      if (prevInput.length < 8) {
-        return prevInput + key;
-      }
-      return prevInput;
-    });
+    const note = noteMap[key] || "C4";
+    synth.triggerAttackRelease(note, "8n");
+    const nextInput = input.length < 8 ? input + key : input;
+    setInput(nextInput);
+
+    const foundUser = users.find((u) => u.pin === nextInput);
+    if (foundUser) {
+      setActiveUser(foundUser);
+      navigate("/home");
+    }
   };
 
   const handleBackspace = () => {

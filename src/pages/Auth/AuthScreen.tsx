@@ -1,5 +1,5 @@
 import "./AuthScreen.css";
-import KeypadDemo from "../components/KeyPad";
+import KeypadDemo from "../../components/KeyPad";
 const AuthScreen = () => {
   return (
     <div className="container">

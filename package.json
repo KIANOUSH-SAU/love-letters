@@ -13,7 +13,9 @@
     "@tailwindcss/vite": "^4.1.18",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-number-pin-keypad": "^1.0.12"
+    "react-number-pin-keypad": "^1.0.12",
+    "react-router-dom": "^7.13.0",
+    "tone": "^15.1.22"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
