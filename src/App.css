@@ -1,0 +1,23 @@
+@import "tailwindcss";
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--space-sm);
+}
+
+/* Tablet and up - increase padding */
+@media (min-width: 768px) {
+  #root {
+    padding: var(--space-lg);
+  }
+}
+
+/* Desktop and up - max padding */
+@media (min-width: 1024px) {
+  #root {
+    padding: var(--space-xl);
+  }
+}
