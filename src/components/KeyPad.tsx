@@ -6,7 +6,12 @@ const KeypadDemo = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyPress = (key: string) => {
-    setInput((prevInput) => prevInput + key);
+    setInput((prevInput) => {
+      if (prevInput.length < 8) {
+        return prevInput + key;
+      }
+      return prevInput;
+    });
   };
 
   const handleBackspace = () => {
@@ -27,7 +32,6 @@ const KeypadDemo = () => {
           ref={inputRef}
           type="text"
           value={input}
-          readOnly
           placeholder="Enter PIN"
           className="w-full border-2 border-primary/30 rounded-lg px-6 py-4 text-center text-2xl font-semibold bg-white/80 text-primary focus:outline-none focus:ring-2 focus:ring-primary"
           onKeyDown={(keyboardKey) => {
