@@ -1,7 +1,7 @@
 /* ========================================
    AUTH SCREEN - Responsive Container
    ======================================== */
-.container {
+.auth-container {
   /* Layout */
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
 
 /* Small screens (phones in landscape, small tablets) */
 @media (min-width: 640px) {
-  .container {
+  .auth-container {
     max-width: 400px;
     padding: var(--space-md);
   }
@@ -30,7 +30,7 @@
 
 /* Medium screens (tablets) */
 @media (min-width: 768px) {
-  .container {
+  .auth-container {
     max-width: 500px;
     min-height: 500px;
   }
@@ -38,7 +38,7 @@
 
 /* Large screens (desktops) */
 @media (min-width: 1024px) {
-  .container {
+  .auth-container {
     max-width: 550px;
     min-height: 550px;
     padding: var(--space-2xl);

@@ -3,6 +3,7 @@ import NotebookTextArea from "../../components/NoteBookTextArea";
 import NotebookPage from "../../components/NoteBookPage";
 import { useState } from "react";
 import { Navbar } from "../../navbar/Navbar";
+import "../Home/HomeScreen.css";
 
 const HomeScreen = () => {
   const { activeUser } = useUser();
@@ -11,8 +12,8 @@ const HomeScreen = () => {
   return (
     <div className="flex min-h-screen">
       <Navbar />
-      <main className="flex-1 flex items-center justify-center p-4">
-        <div className="container">
+      <main>
+        <div className="home-container">
           <NotebookPage showLines={true}>
             <NotebookTextArea
               value={letter}
